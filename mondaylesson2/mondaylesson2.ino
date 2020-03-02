@@ -57,7 +57,7 @@ void loop() {
         Serial.println("Second Push");
         ledDelay = 750;
         break;
-      case 2:    
+      case 3:    
         Serial.println("Third Push");
         ledDelay = 500;
         break;
