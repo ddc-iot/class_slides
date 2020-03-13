@@ -43,31 +43,10 @@ void loop() {
     }
     else {
       Serial.println("Button is pressed"); 
-      Serial.println("Glad it is Friday");
+      Serial.println("Welcome to Monday");
       counter++;
       Serial.print("The counter is equal to "); Serial.println(counter);
-      digitalWrite(ledPin,HIGH);
 
-      switch (counter) {
-      case 1:    
-        Serial.println("First Push");
-        ledDelay = 1000;
-        break;
-      case 2:    
-        Serial.println("Second Push");
-        ledDelay = 750;
-        break;
-      case 2:    
-        Serial.println("Third Push");
-        ledDelay = 500;
-        break;
-      case 4:    
-        Serial.println("Forth Push");
-        ledDelay = 250;
-        break;
-      }
-
-  
       for (flashes = 0; flashes < counter; flashes++) {
         digitalWrite(ledPin,HIGH);
         delay(ledDelay);

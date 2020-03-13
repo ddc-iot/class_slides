@@ -65,6 +65,14 @@ void loop() {
         Serial.println("Forth Push");
         ledDelay = 250;
         break;
+      case 5:    
+        Serial.println("Fifth Push");
+        ledDelay = 125;
+        break;
+      case 6:    
+        Serial.println("Sixth Push");
+        ledDelay = 63;
+        break;
       }
 
   
