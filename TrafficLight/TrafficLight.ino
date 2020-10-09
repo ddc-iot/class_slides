@@ -21,10 +21,5 @@ void setup() {
 }
 
 void loop() {
-  if(button.isPressed()) {
-    trafficlight.red();
-  }
-  else {
-    trafficlight.green();
-  }
+
 }
