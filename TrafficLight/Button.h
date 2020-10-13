@@ -1,3 +1,6 @@
+#ifndef _BUTTON_H_
+#define _BUTTON_H_
+
 class Button {
   int _buttonPin;
 
@@ -10,5 +13,6 @@ class Button {
     bool isPressed() {
       return digitalRead(_buttonPin);
     }
-  
 };
+
+#endif // _BUTTON_H_
