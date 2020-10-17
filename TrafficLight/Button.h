@@ -10,5 +10,5 @@ class Button {
     bool isPressed() {
       return digitalRead(_buttonPin);
     }
-  
+
 };

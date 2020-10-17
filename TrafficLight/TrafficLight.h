@@ -58,7 +58,7 @@ class TrafficLight {
     
     void green(){
       digitalWrite(_greenLED,HIGH);
-       digitalWrite(_yellowLED,LOW);
+      digitalWrite(_yellowLED,LOW);
       digitalWrite(_redLED,LOW);
     }
     void yellow(){
