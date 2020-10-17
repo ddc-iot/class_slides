@@ -1,4 +1,11 @@
+#ifndef _TRAFFICLIGHT_H_
+#define _TRAFFICLIGHT_H_
+
+#include "Timer.h"
+
 class TrafficLight {
+
+  Timer timer;
   
   const int TIMER_GREEN = 5000;
   const int TIMER_YELLOW = 2000;
@@ -19,9 +26,6 @@ class TrafficLight {
   State _currentState = GREEN;
   State _targetState = GREEN;
   
-  int timerStart;
-  int timerTarget;
-  
   public:
     TrafficLight(int greenLED, int yellowLED, int redLED) {
       _greenLED = greenLED;
@@ -31,16 +35,34 @@ class TrafficLight {
     pinMode(_yellowLED,OUTPUT);
     pinMode(_redLED,OUTPUT);
   }
+
+  void go() {
+    _targetState = GREEN;
+  }
+
+  void stop() {
+    _targetState = RED;
+  }
+
+  void looplight() {
+    if(_targetState == GREEN) {
+      goToGreen();
+    }
+    else {
+      goToRed();
+    }
+  }
+
   private:
     void goToGreen(){
       switch(_currentState){
         case RED:
           _currentState = RED_YELLOW;
-          startTimer(TIMER_RED_YELLOW);
+          timer.startTimer(TIMER_RED_YELLOW);
           break;
         case RED_YELLOW:
           red_yellow();
-          if(isTimerReady()){
+          if(timer.isTimerReady()){
           _currentState = GREEN;
           }
           break;
@@ -48,12 +70,30 @@ class TrafficLight {
           green();
           break;
         case YELLOW:
-          red();
+          _currentState = RED;
           break;
       }  
     }
+    
     void goToRed() {
-      
+      switch(_currentState){
+        case GREEN:
+          _currentState = YELLOW;
+          timer.startTimer(TIMER_YELLOW);
+          break;
+        case YELLOW:
+          yellow();
+          if(timer.isTimerReady()){
+          _currentState = RED;
+          }
+          break;
+        case RED:
+          red();
+          break;
+        case RED_YELLOW:
+          _currentState = GREEN;
+          break;
+      }  
     }
     
     void green(){
@@ -76,18 +116,6 @@ class TrafficLight {
       digitalWrite(_yellowLED,HIGH);
       digitalWrite(_redLED,HIGH);
     }
-    
-    void startTimer(int msec) {
-      timerStart = millis();
-      timerTarget = msec;
-    }
-    
-    bool isTimerReady() {
-      if ((millis()-timerStart)>timerTarget) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
 };
+
+#endif // _TRAFFICLIGHT_H_
