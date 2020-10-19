@@ -13,6 +13,10 @@ class Button {
     bool isPressed() {
       return digitalRead(_buttonPin);
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 33c69d4ffe5ef36ba5dd8e5b562c1a8781a8d5e2
 };
 
 #endif // _BUTTON_H_
