@@ -7,35 +7,35 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .dynalib      00000004  000d4018  000d4018  00004018  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  2 .text         00001af4  000d401c  000d401c  0000401c  2**2
+  2 .text         00001b04  000d401c  000d401c  0000401c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .backup       00000004  2003f400  000d5b10  0000f400  2**2
+  3 .backup       00000004  2003f400  000d5b20  0000f400  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .data         00000068  2003dc44  000d5b14  0001dc44  2**2
+  4 .data         00000068  2003dc44  000d5b24  0001dc44  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   5 .bss          00000b44  2003dcac  2003dcac  0002dcac  2**2
                   ALLOC
-  6 .module_info_suffix 00000028  000d5b7c  000d5b7c  00025b7c  2**0
+  6 .module_info_suffix 00000028  000d5b8c  000d5b8c  00025b8c  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .module_info_crc 00000004  000d5ba4  000d5ba4  00025ba4  2**0
+  7 .module_info_crc 00000004  000d5bb4  000d5bb4  00025bb4  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .debug_info   000af1d7  00000000  00000000  00025ba8  2**0
+  8 .debug_info   000af1d7  00000000  00000000  00025bb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 0000d0b3  00000000  00000000  000d4d7f  2**0
+  9 .debug_abbrev 0000d0b3  00000000  00000000  000d4d8f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0001abff  00000000  00000000  000e1e32  2**0
+ 10 .debug_loc    0001abff  00000000  00000000  000e1e42  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00002100  00000000  00000000  000fca31  2**0
+ 11 .debug_aranges 00002100  00000000  00000000  000fca41  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00004030  00000000  00000000  000feb31  2**0
+ 12 .debug_ranges 00004030  00000000  00000000  000feb41  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  0002f0e3  00000000  00000000  00102b61  2**0
+ 13 .debug_macro  0002f0e3  00000000  00000000  00102b71  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   0001f00f  00000000  00000000  00131c44  2**0
+ 14 .debug_line   0001f00f  00000000  00000000  00131c54  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    000febcf  00000000  00000000  00150c53  2**0
+ 15 .debug_str    000febcf  00000000  00000000  00150c63  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_frame  0000c1a0  00000000  00000000  0024f824  2**2
+ 16 .debug_frame  0000c1a0  00000000  00000000  0024f834  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -81,7 +81,7 @@ void* module_user_pre_init() {
    d4040:	bd08      	pop	{r3, pc}
    d4042:	bf00      	nop
    d4044:	2003dc44 	.word	0x2003dc44
-   d4048:	000d5b14 	.word	0x000d5b14
+   d4048:	000d5b24 	.word	0x000d5b24
    d404c:	2003dcac 	.word	0x2003dcac
    d4050:	2003dcac 	.word	0x2003dcac
    d4054:	2003e7f0 	.word	0x2003e7f0
@@ -126,8 +126,8 @@ void module_user_init()
 }
    d4078:	bd70      	pop	{r4, r5, r6, pc}
    d407a:	bf00      	nop
-   d407c:	000d5b0c 	.word	0x000d5b0c
-   d4080:	000d5ad4 	.word	0x000d5ad4
+   d407c:	000d5b14 	.word	0x000d5b14
+   d4080:	000d5adc 	.word	0x000d5adc
 
 000d4084 <module_user_setup>:
 
@@ -254,7 +254,7 @@ void setup() {
    d411a:	4c6f      	ldr	r4, [pc, #444]	; (d42d8 <setup+0x1dc>)
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
    d411c:	4e6f      	ldr	r6, [pc, #444]	; (d42dc <setup+0x1e0>)
   Serial.printf("Credentials for %d Access Points Found \n",found);
@@ -340,7 +340,7 @@ void setup() {
    d416c:	8883      	ldrh	r3, [r0, #4]
    d416e:	80ab      	strh	r3, [r5, #4]
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
    d4170:	f000 fe2c 	bl	d4dcc <_Z16_fetch_usbserialv>
    d4174:	796a      	ldrb	r2, [r5, #5]
    d4176:	782b      	ldrb	r3, [r5, #0]
@@ -368,7 +368,7 @@ void setup() {
   Serial.printf("Scan Argon for Saved Credentials \n");
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
    d419e:	6030      	str	r0, [r6, #0]
   Serial.printf("Credentials for %d Access Points Found \n",found);
@@ -391,7 +391,7 @@ void setup() {
     cytype = (int) ap[i].cipher;
    d41c0:	f8df 815c 	ldr.w	r8, [pc, #348]	; d4320 <setup+0x224>
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
   Serial.printf("Credentials for %d Access Points Found \n",found);
   for (i = 0; i < found; i++) {
@@ -404,7 +404,7 @@ void setup() {
    d41ce:	f893 302d 	ldrb.w	r3, [r3, #45]	; 0x2d
    d41d2:	f8c8 3000 	str.w	r3, [r8]
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
   Serial.printf("Credentials for %d Access Points Found \n",found);
   for (i = 0; i < found; i++) {
@@ -442,7 +442,7 @@ void setup() {
    d4200:	9200      	str	r2, [sp, #0]
    d4202:	4a3d      	ldr	r2, [pc, #244]	; (d42f8 <setup+0x1fc>)
    d4204:	f000 fc19 	bl	d4a3a <_ZN5Print11printf_implEbPKcz>
-    Serial.printf("AP%d - mac: %2X:%2X:%2X:%2X:%2X:%2X \n", i,mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+    Serial.printf("AP%d - mac: %02X:%02X:%02X:%02X:%02X:%02X \n", i,mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
    d4208:	f000 fde0 	bl	d4dcc <_Z16_fetch_usbserialv>
    d420c:	797b      	ldrb	r3, [r7, #5]
    d420e:	9305      	str	r3, [sp, #20]
@@ -486,7 +486,7 @@ void setup() {
    d4262:	f000 fbea 	bl	d4a3a <_ZN5Print11printf_implEbPKcz>
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
   Serial.printf("Credentials for %d Access Points Found \n",found);
   for (i = 0; i < found; i++) {
@@ -572,12 +572,12 @@ void setup() {
    d42f8:	000d5691 	.word	0x000d5691
    d42fc:	000d56a3 	.word	0x000d56a3
    d4300:	2003dcb4 	.word	0x2003dcb4
-   d4304:	000d56c9 	.word	0x000d56c9
+   d4304:	000d56cf 	.word	0x000d56cf
    d4308:	2003e3b4 	.word	0x2003e3b4
-   d430c:	000d56ed 	.word	0x000d56ed
-   d4310:	000d5710 	.word	0x000d5710
+   d430c:	000d56f3 	.word	0x000d56f3
+   d4310:	000d5716 	.word	0x000d5716
    d4314:	2003df54 	.word	0x2003df54
-   d4318:	000d5735 	.word	0x000d5735
+   d4318:	000d573b 	.word	0x000d573b
    d431c:	2003dd14 	.word	0x2003dd14
    d4320:	2003e3f4 	.word	0x2003e3f4
 
@@ -700,27 +700,27 @@ String cypher[4] = {"N/A","WLAN_CIPHER_AES", "WLAN_CIPHER_TKIP", "WLAN_CIPHER_AE
    d43ca:	bf00      	nop
    d43cc:	2003dd24 	.word	0x2003dd24
    d43d0:	2003df54 	.word	0x2003df54
-   d43d4:	000d5769 	.word	0x000d5769
+   d43d4:	000d576f 	.word	0x000d576f
    d43d8:	2003dcb4 	.word	0x2003dcb4
-   d43dc:	000d5778 	.word	0x000d5778
+   d43dc:	000d577e 	.word	0x000d577e
    d43e0:	2003dcc4 	.word	0x2003dcc4
-   d43e4:	000d5785 	.word	0x000d5785
+   d43e4:	000d578b 	.word	0x000d578b
    d43e8:	2003dcd4 	.word	0x2003dcd4
-   d43ec:	000d5792 	.word	0x000d5792
+   d43ec:	000d5798 	.word	0x000d5798
    d43f0:	2003dce4 	.word	0x2003dce4
-   d43f4:	000d57a0 	.word	0x000d57a0
+   d43f4:	000d57a6 	.word	0x000d57a6
    d43f8:	2003dcf4 	.word	0x2003dcf4
-   d43fc:	000d57b8 	.word	0x000d57b8
+   d43fc:	000d57be 	.word	0x000d57be
    d4400:	2003dd04 	.word	0x2003dd04
    d4404:	2003dcac 	.word	0x2003dcac
    d4408:	000d40dd 	.word	0x000d40dd
-   d440c:	000d57d1 	.word	0x000d57d1
+   d440c:	000d57d7 	.word	0x000d57d7
    d4410:	2003e3b4 	.word	0x2003e3b4
-   d4414:	000d57d5 	.word	0x000d57d5
+   d4414:	000d57db 	.word	0x000d57db
    d4418:	2003e3c4 	.word	0x2003e3c4
-   d441c:	000d57e5 	.word	0x000d57e5
+   d441c:	000d57eb 	.word	0x000d57eb
    d4420:	2003e3d4 	.word	0x2003e3d4
-   d4424:	000d57f6 	.word	0x000d57f6
+   d4424:	000d57fc 	.word	0x000d57fc
    d4428:	2003e3e4 	.word	0x2003e3e4
    d442c:	000d40b1 	.word	0x000d40b1
 
@@ -1432,7 +1432,7 @@ public:
    d4798:	601a      	str	r2, [r3, #0]
    d479a:	4770      	bx	lr
    d479c:	2003e3f8 	.word	0x2003e3f8
-   d47a0:	000d5814 	.word	0x000d5814
+   d47a0:	000d581c 	.word	0x000d581c
 
 000d47a4 <_ZN17SystemSleepResult22freeWakeupSourceMemoryEv.isra.2>:
     operator SleepResult() {
@@ -1990,7 +1990,7 @@ String::String(const Printable& printable)
    d494e:	4620      	mov	r0, r4
    d4950:	b005      	add	sp, #20
    d4952:	bd30      	pop	{r4, r5, pc}
-   d4954:	000d5848 	.word	0x000d5848
+   d4954:	000d5850 	.word	0x000d5850
 
 000d4958 <_ZN14RecursiveMutexD1Ev>:
     RecursiveMutex() : handle_(nullptr)
@@ -2400,7 +2400,7 @@ inline spark::Logger::Logger(const char *name) :
    d4ab4:	601a      	str	r2, [r3, #0]
    d4ab6:	4770      	bx	lr
    d4ab8:	2003e410 	.word	0x2003e410
-   d4abc:	000d58cb 	.word	0x000d58cb
+   d4abc:	000d58d3 	.word	0x000d58d3
 
 000d4ac0 <_GLOBAL__sub_I_TIME_FORMAT_DEFAULT>:
             calendar_time_cache = Convert_UnixTime_To_CalendarTime(unix_time);
@@ -2586,7 +2586,7 @@ void system_initialize_user_backup_ram()
    d4b6c:	f000 bd0c 	b.w	d5588 <memcpy>
    d4b70:	2003f400 	.word	0x2003f400
    d4b74:	2003f404 	.word	0x2003f404
-   d4b78:	000d5b10 	.word	0x000d5b10
+   d4b78:	000d5b20 	.word	0x000d5b20
 
 000d4b7c <_Z27ctrl_request_custom_handlerP12ctrl_request>:
 bool __backup_ram_was_valid() { return false; }
@@ -2890,7 +2890,7 @@ IPAddress::IPAddress()
    d4caa:	4620      	mov	r0, r4
    d4cac:	bd10      	pop	{r4, pc}
    d4cae:	bf00      	nop
-   d4cb0:	000d596c 	.word	0x000d596c
+   d4cb0:	000d5974 	.word	0x000d5974
 
 000d4cb4 <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 
@@ -2910,7 +2910,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
    d4cd0:	701a      	strb	r2, [r3, #0]
 }
    d4cd2:	bd10      	pop	{r4, pc}
-   d4cd4:	000d596c 	.word	0x000d596c
+   d4cd4:	000d5974 	.word	0x000d5974
 
 000d4cd8 <_ZN9IPAddress8set_ipv4Ehhhh>:
     return address.ipv4!=0;
@@ -3140,7 +3140,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
    d4dac:	4620      	mov	r0, r4
    d4dae:	bd10      	pop	{r4, pc}
-   d4db0:	000d5980 	.word	0x000d5980
+   d4db0:	000d5988 	.word	0x000d5988
 
 000d4db4 <_ZN9USBSerial5beginEl>:
 // Public methods
@@ -3401,7 +3401,7 @@ USARTSerial::USARTSerial(HAL_USART_Serial serial, Ring_Buffer *rx_buffer, Ring_B
    d4ebe:	4620      	mov	r0, r4
    d4ec0:	bd10      	pop	{r4, pc}
    d4ec2:	bf00      	nop
-   d4ec4:	000d59b0 	.word	0x000d59b0
+   d4ec4:	000d59b8 	.word	0x000d59b8
 
 000d4ec8 <_Z22__fetch_global_Serial1v>:
 static Ring_Buffer* serial1_rx_buffer = NULL;
@@ -3807,7 +3807,7 @@ class MeshClass : public NetworkClass, public MeshPublish {
    d5036:	4620      	mov	r0, r4
    d5038:	bd10      	pop	{r4, pc}
    d503a:	bf00      	nop
-   d503c:	000d59e0 	.word	0x000d59e0
+   d503c:	000d59e8 	.word	0x000d59e8
 
 000d5040 <_GLOBAL__sub_I__ZN5spark11MeshPublish13Subscriptions20event_handler_existsEPKcPFvS3_S3_EPvN17SubscriptionScope4EnumES3_>:
 
@@ -3881,8 +3881,8 @@ MeshClass Mesh;
    d5076:	f000 b929 	b.w	d52cc <__aeabi_atexit>
    d507a:	bf00      	nop
    d507c:	2003e568 	.word	0x2003e568
-   d5080:	000d5a48 	.word	0x000d5a48
-   d5084:	000d59e0 	.word	0x000d59e0
+   d5080:	000d5a50 	.word	0x000d5a50
+   d5084:	000d59e8 	.word	0x000d59e8
    d5088:	2003dcac 	.word	0x2003dcac
    d508c:	000d5029 	.word	0x000d5029
 
@@ -4195,7 +4195,7 @@ public:
    d5178:	601a      	str	r2, [r3, #0]
    d517a:	4770      	bx	lr
    d517c:	2003e73c 	.word	0x2003e73c
-   d5180:	000d5a14 	.word	0x000d5a14
+   d5180:	000d5a1c 	.word	0x000d5a1c
 
 000d5184 <_ZN5spark12NetworkClass7connectEj>:
         return Network;
@@ -4498,7 +4498,7 @@ class IPAddress : public Printable {
    d52c0:	605a      	str	r2, [r3, #4]
    d52c2:	4770      	bx	lr
    d52c4:	2003e744 	.word	0x2003e744
-   d52c8:	000d5a48 	.word	0x000d5a48
+   d52c8:	000d5a50 	.word	0x000d5a50
 
 000d52cc <__aeabi_atexit>:
    d52cc:	460b      	mov	r3, r1
@@ -4902,114 +4902,115 @@ class IPAddress : public Printable {
    d5680:	2073 6f50 6e69 7374 4620 756f 646e 0a20     s Points Found .
    d5690:	4100 2550 2064 202d 7373 6469 203a 7325     .AP%d - ssid: %s
    d56a0:	0a20 4100 2550 2064 202d 616d 3a63 2520      ..AP%d - mac: %
-   d56b0:	5832 253a 5832 253a 5832 253a 5832 253a     2X:%2X:%2X:%2X:%
-   d56c0:	5832 253a 5832 0a20 4100 2550 2064 202d     2X:%2X ..AP%d - 
-   d56d0:	6573 7563 6972 7974 203a 6425 2820 6573     security: %d (se
-   d56e0:	7563 6972 7974 2520 2973 0a20 4100 2550     curity %s) ..AP%
-   d56f0:	2064 202d 6963 6870 7265 203a 2020 6425     d - cipher:   %d
-   d5700:	2820 6963 6870 7265 2520 2973 0a20 000a      (cipher %s) ...
-   d5710:	200a 570a 6669 2069 6353 6e61 6f20 2066     . .Wifi Scan of 
-   d5720:	7661 6961 616c 6c62 2065 656e 7774 726f     available networ
-   d5730:	736b 0a20 7300 6973 3d64 7325 7320 6365     ks ..ssid=%s sec
-   d5740:	7275 7469 3d79 6425 6320 7069 6568 3d72     urity=%d cipher=
-   d5750:	6425 202c 6863 6e61 656e 3d6c 6425 7220     %d, channel=%d r
-   d5760:	7373 3d69 6425 0a20 5700 414c 5f4e 4553     ssi=%d ..WLAN_SE
-   d5770:	5f43 4e55 4553 0043 4c57 4e41 535f 4345     C_UNSEC.WLAN_SEC
-   d5780:	575f 5045 5700 414c 5f4e 4553 5f43 5057     _WEP.WLAN_SEC_WP
-   d5790:	0041 4c57 4e41 535f 4345 575f 4150 0032     A.WLAN_SEC_WPA2.
-   d57a0:	4c57 4e41 535f 4345 575f 4150 455f 544e     WLAN_SEC_WPA_ENT
-   d57b0:	5245 5250 5349 0045 4c57 4e41 535f 4345     ERPRISE.WLAN_SEC
-   d57c0:	575f 4150 5f32 4e45 4554 5052 4952 4553     _WPA2_ENTERPRISE
-   d57d0:	4e00 412f 5700 414c 5f4e 4943 4850 5245     .N/A.WLAN_CIPHER
-   d57e0:	415f 5345 5700 414c 5f4e 4943 4850 5245     _AES.WLAN_CIPHER
-   d57f0:	545f 494b 0050 4c57 4e41 435f 5049 4548     _TKIP.WLAN_CIPHE
-   d5800:	5f52 4541 5f53 4b54 5049 0000               R_AES_TKIP..
+   d56b0:	3230 3a58 3025 5832 253a 3230 3a58 3025     02X:%02X:%02X:%0
+   d56c0:	5832 253a 3230 3a58 3025 5832 0a20 4100     2X:%02X:%02X ..A
+   d56d0:	2550 2064 202d 6573 7563 6972 7974 203a     P%d - security: 
+   d56e0:	6425 2820 6573 7563 6972 7974 2520 2973     %d (security %s)
+   d56f0:	0a20 4100 2550 2064 202d 6963 6870 7265      ..AP%d - cipher
+   d5700:	203a 2020 6425 2820 6963 6870 7265 2520     :   %d (cipher %
+   d5710:	2973 0a20 000a 200a 570a 6669 2069 6353     s) .... .Wifi Sc
+   d5720:	6e61 6f20 2066 7661 6961 616c 6c62 2065     an of available 
+   d5730:	656e 7774 726f 736b 0a20 7300 6973 3d64     networks ..ssid=
+   d5740:	7325 7320 6365 7275 7469 3d79 6425 6320     %s security=%d c
+   d5750:	7069 6568 3d72 6425 202c 6863 6e61 656e     ipher=%d, channe
+   d5760:	3d6c 6425 7220 7373 3d69 6425 0a20 5700     l=%d rssi=%d ..W
+   d5770:	414c 5f4e 4553 5f43 4e55 4553 0043 4c57     LAN_SEC_UNSEC.WL
+   d5780:	4e41 535f 4345 575f 5045 5700 414c 5f4e     AN_SEC_WEP.WLAN_
+   d5790:	4553 5f43 5057 0041 4c57 4e41 535f 4345     SEC_WPA.WLAN_SEC
+   d57a0:	575f 4150 0032 4c57 4e41 535f 4345 575f     _WPA2.WLAN_SEC_W
+   d57b0:	4150 455f 544e 5245 5250 5349 0045 4c57     PA_ENTERPRISE.WL
+   d57c0:	4e41 535f 4345 575f 4150 5f32 4e45 4554     AN_SEC_WPA2_ENTE
+   d57d0:	5052 4952 4553 4e00 412f 5700 414c 5f4e     RPRISE.N/A.WLAN_
+   d57e0:	4943 4850 5245 415f 5345 5700 414c 5f4e     CIPHER_AES.WLAN_
+   d57f0:	4943 4850 5245 545f 494b 0050 4c57 4e41     CIPHER_TKIP.WLAN
+   d5800:	435f 5049 4548 5f52 4541 5f53 4b54 5049     _CIPHER_AES_TKIP
+   d5810:	0000 0000                                   ....
 
-000d580c <_ZTVN5spark13EthernetClassE>:
+000d5814 <_ZTVN5spark13EthernetClassE>:
 	...
-   d5814:	4787 000d 477d 000d 4773 000d 4769 000d     .G..}G..sG..iG..
-   d5824:	475d 000d 4751 000d 4745 000d 473d 000d     ]G..QG..EG..=G..
-   d5834:	4733 000d 4729 000d 51ed 000d               3G..)G...Q..
+   d581c:	4787 000d 477d 000d 4773 000d 4769 000d     .G..}G..sG..iG..
+   d582c:	475d 000d 4751 000d 4745 000d 473d 000d     ]G..QG..EG..=G..
+   d583c:	4733 000d 4729 000d 51ed 000d               3G..)G...Q..
 
-000d5840 <_ZTV21StringPrintableHelper>:
+000d5848 <_ZTV21StringPrintableHelper>:
 	...
-   d5848:	47f9 000d 47fb 000d 4919 000d 48eb 000d     .G...G...I...H..
-   d5858:	6162 6475 5300 7265 6169 006c 6553 6972     baud.Serial.Seri
-   d5868:	6c61 0031 7974 6570 7000 7261 6d61 6300     al1.type.param.c
-   d5878:	646d 6900 0064 6e68 0064 7473 6d72 6600     md.id.hnd.strm.f
-   d5888:	6c69 0074 766c 006c 6461 4864 6e61 6c64     ilt.lvl.addHandl
-   d5898:	7265 7200 6d65 766f 4865 6e61 6c64 7265     er.removeHandler
-   d58a8:	6500 756e 486d 6e61 6c64 7265 0073 534a     .enumHandlers.JS
-   d58b8:	4e4f 7453 6572 6d61 6f4c 4867 6e61 6c64     ONStreamLogHandl
-   d58c8:	7265 6100 7070 2500 3130 7530 0020 205d     er.app.%010u .] 
-   d58d8:	2500 0064 202c 2800 3a29 0020 5b20 6300     .%d., .(): . [.c
-   d58e8:	646f 2065 203d 2500 0069 6564 6174 6c69     ode = .%i.detail
-   d58f8:	2073 203d 0d00 000a 0066 6e6c 6600 006e     s = ....f.ln.fn.
-   d5908:	6f63 6564 6400 7465 6961 006c 6f6e 656e     code.detail.none
-   d5918:	7400 6172 6563 6900 666e 006f 6177 6e72     .trace.info.warn
-   d5928:	6500 7272 726f 7000 6e61 6369 6100 6c6c     .error.panic.all
-   d5938:	5a00 2500 302b 6433 253a 3230 0075 5925     .Z.%+03d:%02u.%Y
-   d5948:	252d 2d6d 6425 2554 3a48 4d25 253a 2553     -%m-%dT%H:%M:%S%
-   d5958:	007a 7361 7463 6d69 0065 0000               z.asctime...
+   d5850:	47f9 000d 47fb 000d 4919 000d 48eb 000d     .G...G...I...H..
+   d5860:	6162 6475 5300 7265 6169 006c 6553 6972     baud.Serial.Seri
+   d5870:	6c61 0031 7974 6570 7000 7261 6d61 6300     al1.type.param.c
+   d5880:	646d 6900 0064 6e68 0064 7473 6d72 6600     md.id.hnd.strm.f
+   d5890:	6c69 0074 766c 006c 6461 4864 6e61 6c64     ilt.lvl.addHandl
+   d58a0:	7265 7200 6d65 766f 4865 6e61 6c64 7265     er.removeHandler
+   d58b0:	6500 756e 486d 6e61 6c64 7265 0073 534a     .enumHandlers.JS
+   d58c0:	4e4f 7453 6572 6d61 6f4c 4867 6e61 6c64     ONStreamLogHandl
+   d58d0:	7265 6100 7070 2500 3130 7530 0020 205d     er.app.%010u .] 
+   d58e0:	2500 0064 202c 2800 3a29 0020 5b20 6300     .%d., .(): . [.c
+   d58f0:	646f 2065 203d 2500 0069 6564 6174 6c69     ode = .%i.detail
+   d5900:	2073 203d 0d00 000a 0066 6e6c 6600 006e     s = ....f.ln.fn.
+   d5910:	6f63 6564 6400 7465 6961 006c 6f6e 656e     code.detail.none
+   d5920:	7400 6172 6563 6900 666e 006f 6177 6e72     .trace.info.warn
+   d5930:	6500 7272 726f 7000 6e61 6369 6100 6c6c     .error.panic.all
+   d5940:	5a00 2500 302b 6433 253a 3230 0075 5925     .Z.%+03d:%02u.%Y
+   d5950:	252d 2d6d 6425 2554 3a48 4d25 253a 2553     -%m-%dT%H:%M:%S%
+   d5960:	007a 7361 7463 6d69 0065 0000               z.asctime...
 
-000d5964 <_ZTV9IPAddress>:
+000d596c <_ZTV9IPAddress>:
 	...
-   d596c:	4c35 000d 4c25 000d 4c27 000d               5L..%L..'L..
+   d5974:	4c35 000d 4c25 000d 4c27 000d               5L..%L..'L..
 
-000d5978 <_ZTV9USBSerial>:
+000d5980 <_ZTV9USBSerial>:
 	...
-   d5980:	4d0d 000d 4d5d 000d 4d6b 000d 4991 000d     .M..]M..kM...I..
-   d5990:	4d49 000d 4d0f 000d 4d25 000d 4d57 000d     IM...M..%M..WM..
-   d59a0:	4d3b 000d 4d09 000d                         ;M...M..
+   d5988:	4d0d 000d 4d5d 000d 4d6b 000d 4991 000d     .M..]M..kM...I..
+   d5998:	4d49 000d 4d0f 000d 4d25 000d 4d57 000d     IM...M..%M..WM..
+   d59a8:	4d3b 000d 4d09 000d                         ;M...M..
 
-000d59a8 <_ZTV11USARTSerial>:
+000d59b0 <_ZTV11USARTSerial>:
 	...
-   d59b0:	4e19 000d 4e69 000d 4e77 000d 4991 000d     .N..iN..wN...I..
-   d59c0:	4e2d 000d 4e4f 000d 4e3b 000d 4e63 000d     -N..ON..;N..cN..
-   d59d0:	4e1b 000d 4e1f 000d                         .N...N..
+   d59b8:	4e19 000d 4e69 000d 4e77 000d 4991 000d     .N..iN..wN...I..
+   d59c8:	4e2d 000d 4e4f 000d 4e3b 000d 4e63 000d     -N..ON..;N..cN..
+   d59d8:	4e1b 000d 4e1f 000d                         .N...N..
 
-000d59d8 <_ZTVN5spark9MeshClassE>:
+000d59e0 <_ZTVN5spark9MeshClassE>:
 	...
-   d59e0:	4f73 000d 4f69 000d 4f5f 000d 4f55 000d     sO..iO.._O..UO..
-   d59f0:	4f49 000d 4f3d 000d 4f31 000d 4f29 000d     IO..=O..1O..)O..
-   d5a00:	4f1f 000d 4f15 000d 51ed 000d               .O...O...Q..
+   d59e8:	4f73 000d 4f69 000d 4f5f 000d 4f55 000d     sO..iO.._O..UO..
+   d59f8:	4f49 000d 4f3d 000d 4f31 000d 4f29 000d     IO..=O..1O..)O..
+   d5a08:	4f1f 000d 4f15 000d 51ed 000d               .O...O...Q..
 
-000d5a0c <_ZTVN5spark9WiFiClassE>:
+000d5a14 <_ZTVN5spark9WiFiClassE>:
 	...
-   d5a14:	511d 000d 5113 000d 5109 000d 50bf 000d     .Q...Q...Q...P..
-   d5a24:	50fd 000d 50f1 000d 50e5 000d 50dd 000d     .P...P...P...P..
-   d5a34:	50d3 000d 50c9 000d 51ed 000d               .P...P...Q..
+   d5a1c:	511d 000d 5113 000d 5109 000d 50bf 000d     .Q...Q...Q...P..
+   d5a2c:	50fd 000d 50f1 000d 50e5 000d 50dd 000d     .P...P...P...P..
+   d5a3c:	50d3 000d 50c9 000d 51ed 000d               .P...P...Q..
 
-000d5a40 <_ZTVN5spark12NetworkClassE>:
+000d5a48 <_ZTVN5spark12NetworkClassE>:
 	...
-   d5a48:	5185 000d 518f 000d 5199 000d 51a3 000d     .Q...Q...Q...Q..
-   d5a58:	51ad 000d 51b9 000d 51c5 000d 51d1 000d     .Q...Q...Q...Q..
-   d5a68:	51d9 000d 51e3 000d 51ed 000d               .Q...Q...Q..
+   d5a50:	5185 000d 518f 000d 5199 000d 51a3 000d     .Q...Q...Q...Q..
+   d5a60:	51ad 000d 51b9 000d 51c5 000d 51d1 000d     .Q...Q...Q...Q..
+   d5a70:	51d9 000d 51e3 000d 51ed 000d               .Q...Q...Q..
 
-000d5a74 <__sf_fake_stdin>:
-	...
-
-000d5a94 <__sf_fake_stdout>:
+000d5a7c <__sf_fake_stdin>:
 	...
 
-000d5ab4 <__sf_fake_stderr>:
+000d5a9c <__sf_fake_stdout>:
 	...
 
-000d5ad4 <link_const_variable_data_end>:
-   d5ad4:	000d4329 	.word	0x000d4329
-   d5ad8:	000d4791 	.word	0x000d4791
-   d5adc:	000d47c5 	.word	0x000d47c5
-   d5ae0:	000d4969 	.word	0x000d4969
-   d5ae4:	000d4ab1 	.word	0x000d4ab1
-   d5ae8:	000d4ac1 	.word	0x000d4ac1
-   d5aec:	000d4af9 	.word	0x000d4af9
-   d5af0:	000d5041 	.word	0x000d5041
-   d5af4:	000d5171 	.word	0x000d5171
-   d5af8:	000d52b9 	.word	0x000d52b9
-   d5afc:	000d52dd 	.word	0x000d52dd
-   d5b00:	000d5361 	.word	0x000d5361
-   d5b04:	000d5425 	.word	0x000d5425
-   d5b08:	000d54e9 	.word	0x000d54e9
+000d5abc <__sf_fake_stderr>:
+	...
 
-000d5b0c <link_constructors_end>:
-   d5b0c:	00000000 	.word	0x00000000
+000d5adc <link_const_variable_data_end>:
+   d5adc:	000d4329 	.word	0x000d4329
+   d5ae0:	000d4791 	.word	0x000d4791
+   d5ae4:	000d47c5 	.word	0x000d47c5
+   d5ae8:	000d4969 	.word	0x000d4969
+   d5aec:	000d4ab1 	.word	0x000d4ab1
+   d5af0:	000d4ac1 	.word	0x000d4ac1
+   d5af4:	000d4af9 	.word	0x000d4af9
+   d5af8:	000d5041 	.word	0x000d5041
+   d5afc:	000d5171 	.word	0x000d5171
+   d5b00:	000d52b9 	.word	0x000d52b9
+   d5b04:	000d52dd 	.word	0x000d52dd
+   d5b08:	000d5361 	.word	0x000d5361
+   d5b0c:	000d5425 	.word	0x000d5425
+   d5b10:	000d54e9 	.word	0x000d54e9
+
+000d5b14 <link_constructors_end>:
+	...

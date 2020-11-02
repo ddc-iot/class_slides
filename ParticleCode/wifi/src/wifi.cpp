@@ -33,7 +33,7 @@ void setup() {
   Serial.printf("Scan Argon for Saved Credentials \n");
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
-  Serial.printf("mac: %2X:%2X:%2X:%2X:%2X:%2X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
   found = WiFi.getCredentials(ap, 5);
   Serial.printf("Credentials for %d Access Points Found \n",found);
   for (i = 0; i < found; i++) {
@@ -44,7 +44,7 @@ void setup() {
     }
     
     Serial.printf("AP%d - ssid: %s \n", i,ap[i].ssid);
-    Serial.printf("AP%d - mac: %2X:%2X:%2X:%2X:%2X:%2X \n", i,mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+    Serial.printf("AP%d - mac: %02X:%02X:%02X:%02X:%02X:%02X \n", i,mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
     Serial.printf("AP%d - security: %d (security %s) \n", i,sectype,security[sectype].c_str());
     Serial.printf("AP%d - cipher:   %d (cipher %s) \n\n", i,cytype, cypher[cytype].c_str());
   }
