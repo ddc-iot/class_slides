@@ -3,7 +3,7 @@
 /******************************************************/
 
 #include "Particle.h"
-#line 1 "c:/Users/IoTPa/Documents/Particle/wifi/src/wifi.ino"
+#line 1 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
 /*
  * Project WiFi
  * Description: Determine which WiFi connections the Argon has stored and which are visible
@@ -13,7 +13,7 @@
 
 void setup();
 void loop();
-#line 8 "c:/Users/IoTPa/Documents/Particle/wifi/src/wifi.ino"
+#line 8 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
 WiFiAccessPoint ap[10];
 WiFiAccessPoint aps[20];
 
