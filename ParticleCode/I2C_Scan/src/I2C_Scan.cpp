@@ -2,7 +2,7 @@
 //       THIS IS A GENERATED FILE - DO NOT EDIT       //
 /******************************************************/
 
-#line 1 "c:/Users/IoT_Instructor/Documents/IoT/instructor_master/Utilities/I2C_Scan/src/I2C_Scan.ino"
+#line 1 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/I2C_Scan/src/I2C_Scan.ino"
 /*
  * Project I2C_Scan
  * Description: Scan I2C bus and return found addresses
@@ -14,7 +14,7 @@
 
 void setup();
 void loop();
-#line 10 "c:/Users/IoT_Instructor/Documents/IoT/instructor_master/Utilities/I2C_Scan/src/I2C_Scan.ino"
+#line 10 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/I2C_Scan/src/I2C_Scan.ino"
 byte status; 
 byte address;
 int nDevices;
