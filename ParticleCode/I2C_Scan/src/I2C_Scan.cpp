@@ -18,7 +18,7 @@ void loop();
 byte status; 
 byte address;
 int nDevices;
-unsigned long delayTime;
+unsigned long delayTime=2000;
 
 void setup() {
 	Wire.begin();
@@ -35,10 +35,10 @@ void loop() {
 		Wire.beginTransmission(address);
 		status = Wire.endTransmission();
 		if (status == 0) {
-			Serial.printf("I2C device found at address 0x%2x \n",address);
+			Serial.printf("I2C device found at address 0x%02x \n",address);
 			nDevices++;
 		} else if (status == 4) {
-			Serial.printf("Unknown error at address 0x%2x \n",address);
+			Serial.printf("Unknown error at address 0x%02x \n",address);
 		}
 	}
 	if (nDevices == 0) {
