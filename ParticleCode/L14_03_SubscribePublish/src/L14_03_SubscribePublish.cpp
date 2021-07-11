@@ -3,7 +3,7 @@
 /******************************************************/
 
 #include "Particle.h"
-#line 1 "c:/Users/IoTPa/Documents/IoT/cohort4/L14_Moisture/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
+#line 1 "c:/Users/IoTPa/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
 /*
  * Project L14_03_SubscribePublish
  * Description: Starter Code for Adafruit.io
@@ -15,7 +15,7 @@
 
 #include "Adafruit_MQTT/Adafruit_MQTT.h" 
 #include "Adafruit_MQTT/Adafruit_MQTT_SPARK.h" 
-#include "Adafruit_MQTT/Adafruit_MQTT.h" 
+//#include "Adafruit_MQTT/Adafruit_MQTT.h" 
 
 #include "credentials.h"
 
@@ -23,7 +23,7 @@
 void setup();
 void loop();
 void MQTT_connect();
-#line 17 "c:/Users/IoTPa/Documents/IoT/cohort4/L14_Moisture/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
+#line 17 "c:/Users/IoTPa/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
 TCPClient TheClient; 
 
 // Setup the MQTT client class by passing in the WiFi client and MQTT server and login details. 
@@ -85,7 +85,7 @@ void loop() {
   while ((subscription = mqtt.readSubscription(1000))) {
     if (subscription == &mqttObj2) {
       value2 = atof((char *)mqttObj2.lastread);
-      Serial.printf("The value received from the Cloud is %0.2f \n",value2);
+          Serial.printf("Received %0.2f from Adafruit.io feed FeedNameB \n",value2);
     }
   }
 }

@@ -9,7 +9,7 @@
 
 #include "Adafruit_MQTT/Adafruit_MQTT.h" 
 #include "Adafruit_MQTT/Adafruit_MQTT_SPARK.h" 
-#include "Adafruit_MQTT/Adafruit_MQTT.h" 
+//#include "Adafruit_MQTT/Adafruit_MQTT.h" 
 
 #include "credentials.h"
 
@@ -75,7 +75,7 @@ void loop() {
   while ((subscription = mqtt.readSubscription(1000))) {
     if (subscription == &mqttObj2) {
       value2 = atof((char *)mqttObj2.lastread);
-      Serial.printf("The value received from the Cloud is %0.2f \n",value2);
+          Serial.printf("Received %0.2f from Adafruit.io feed FeedNameB \n",value2);
     }
   }
 }
