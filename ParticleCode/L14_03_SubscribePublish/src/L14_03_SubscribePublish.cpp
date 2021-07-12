@@ -3,7 +3,7 @@
 /******************************************************/
 
 #include "Particle.h"
-#line 1 "c:/Users/IoTPa/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
+#line 1 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
 /*
  * Project L14_03_SubscribePublish
  * Description: Starter Code for Adafruit.io
@@ -23,7 +23,7 @@
 void setup();
 void loop();
 void MQTT_connect();
-#line 17 "c:/Users/IoTPa/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
+#line 17 "c:/Users/IoT_Instructor/Documents/IoT/class_slides/ParticleCode/L14_03_SubscribePublish/src/L14_03_SubscribePublish.ino"
 TCPClient TheClient; 
 
 // Setup the MQTT client class by passing in the WiFi client and MQTT server and login details. 
@@ -32,7 +32,7 @@ Adafruit_MQTT_SPARK mqtt(&TheClient,AIO_SERVER,AIO_SERVERPORT,AIO_USERNAME,AIO_K
 /****************************** Feeds ***************************************/ 
 // Setup Feeds to publish or subscribe 
 // Notice MQTT paths for AIO follow the form: <username>/feeds/<feedname> 
-Adafruit_MQTT_Publish mqttObj1 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/<FeedNameA");
+Adafruit_MQTT_Publish mqttObj1 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/FeedNameA");
 Adafruit_MQTT_Subscribe mqttObj2 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/FeedNameB");
 
 /************Declare Variables*************/

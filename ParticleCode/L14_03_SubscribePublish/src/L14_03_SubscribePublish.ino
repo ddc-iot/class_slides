@@ -22,7 +22,7 @@ Adafruit_MQTT_SPARK mqtt(&TheClient,AIO_SERVER,AIO_SERVERPORT,AIO_USERNAME,AIO_K
 /****************************** Feeds ***************************************/ 
 // Setup Feeds to publish or subscribe 
 // Notice MQTT paths for AIO follow the form: <username>/feeds/<feedname> 
-Adafruit_MQTT_Publish mqttObj1 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/<FeedNameA");
+Adafruit_MQTT_Publish mqttObj1 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/FeedNameA");
 Adafruit_MQTT_Subscribe mqttObj2 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/FeedNameB");
 
 /************Declare Variables*************/
