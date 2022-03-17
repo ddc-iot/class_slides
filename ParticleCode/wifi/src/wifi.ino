@@ -44,7 +44,10 @@ void setup() {
   Serial.printf("\n \nWifi Scan of available networks \n");
   found = WiFi.scan(aps, 20); 
   for (i=0; i<found; i++) {
-    Serial.printf("ssid=%s security=%d cipher=%d, channel=%d rssi=%d \n", aps[i].ssid, (int)aps[i].security, (int)aps[i].cipher, aps[i].channel, aps[i].rssi);
+    //if(aps[i].ssid == "DDCIOT") {
+      Serial.printf("ssid=%s security=%d cipher=%d, channel=%d rssi=%d \n", aps[i].ssid, (int)aps[i].security, (int)aps[i].cipher, aps[i].channel, aps[i].rssi);
+    //}
+    
   }
 }
 
