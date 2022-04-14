@@ -17,6 +17,8 @@ byte mac[6];
 String security[6] = {"WLAN_SEC_UNSEC", "WLAN_SEC_WEP", "WLAN_SEC_WPA", "WLAN_SEC_WPA2", "WLAN_SEC_WPA_ENTERPRISE", "WLAN_SEC_WPA2_ENTERPRISE"};
 String cypher[4] = {"N/A","WLAN_CIPHER_AES", "WLAN_CIPHER_TKIP", "WLAN_CIPHER_AES_TKIP"};
 
+SerialLogHandler LogHandler(LOG_LEVEL_ALL);
+
 void setup() {
   Serial.begin(9600);
   delay(100);
