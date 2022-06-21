@@ -18,11 +18,15 @@ String security[6] = {"WLAN_SEC_UNSEC", "WLAN_SEC_WEP", "WLAN_SEC_WPA", "WLAN_SE
 String cypher[4] = {"N/A","WLAN_CIPHER_AES", "WLAN_CIPHER_TKIP", "WLAN_CIPHER_AES_TKIP"};
 
 SerialLogHandler LogHandler(LOG_LEVEL_ALL);
+SYSTEM_MODE(SEMI_AUTOMATIC);
 
 void setup() {
   Serial.begin(9600);
   delay(100);
 
+  WiFi.on();
+  WiFi.connect();
+  delay(1000);
   Serial.printf("Scan Argon for Saved Credentials \n");
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
@@ -54,5 +58,15 @@ void setup() {
 }
 
 void loop() {
+  delay(10000);
+  Serial.printf("Scan Argon for Saved Credentials \n");
+  Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
+  WiFi.macAddress(mac);
+  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  if(!Particle.connected()) {
+    Serial.printf("Trying to connect");
+      Particle.connect();
+      delay(5000);
+  }
 
 }
