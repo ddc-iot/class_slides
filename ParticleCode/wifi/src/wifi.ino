@@ -22,12 +22,17 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 void setup() {
   Serial.begin(9600);
-  delay(100);
+  waitFor(Serial.isConnected, 10000);
 
   WiFi.on();
   WiFi.connect();
+  while(WiFi.connecting()) {
+    Serial.printf(".");
+    delay(250);
+  }
+  Serial.printf("\nWaiting for IP Address\n");
   delay(1000);
-  Serial.printf("Scan Argon for Saved Credentials \n");
+  Serial.printf("Scan Argon for WiFi Information \n");
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
   Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
@@ -58,15 +63,15 @@ void setup() {
 }
 
 void loop() {
-  delay(10000);
-  Serial.printf("Scan Argon for Saved Credentials \n");
-  Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
-  WiFi.macAddress(mac);
-  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
-  if(!Particle.connected()) {
-    Serial.printf("Trying to connect");
-      Particle.connect();
-      delay(5000);
-  }
+  // delay(10000);
+  // Serial.printf("Scan Argon for Saved Credentials \n");
+  // Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
+  // WiFi.macAddress(mac);
+  // Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  // if(!Particle.connected()) {
+  //   Serial.printf("Trying to connect");
+  //     Particle.connect();
+  //     delay(5000);
+  // }
 
 }

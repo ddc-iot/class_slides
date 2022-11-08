@@ -3,7 +3,7 @@
 /******************************************************/
 
 #include "Particle.h"
-#line 1 "c:/Users/ddcio/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
+#line 1 "c:/Users/baras/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
 /*
  * Project WiFi
  * Description: Determine which WiFi connections the Argon has stored and which are visible
@@ -13,7 +13,7 @@
 
 void setup();
 void loop();
-#line 8 "c:/Users/ddcio/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
+#line 8 "c:/Users/baras/Documents/IoT/class_slides/ParticleCode/wifi/src/wifi.ino"
 WiFiAccessPoint ap[10];
 WiFiAccessPoint aps[20];
 
@@ -26,17 +26,22 @@ byte mac[6];
 String security[6] = {"WLAN_SEC_UNSEC", "WLAN_SEC_WEP", "WLAN_SEC_WPA", "WLAN_SEC_WPA2", "WLAN_SEC_WPA_ENTERPRISE", "WLAN_SEC_WPA2_ENTERPRISE"};
 String cypher[4] = {"N/A","WLAN_CIPHER_AES", "WLAN_CIPHER_TKIP", "WLAN_CIPHER_AES_TKIP"};
 
-SerialLogHandler LogHandler(LOG_LEVEL_ALL);
+//SerialLogHandler LogHandler(LOG_LEVEL_ALL);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
 void setup() {
   Serial.begin(9600);
-  delay(100);
+  waitFor(Serial.isConnected, 10000);
 
   WiFi.on();
   WiFi.connect();
+  while(WiFi.connecting()) {
+    Serial.printf(".");
+    delay(250);
+  }
+  Serial.printf("\nWaiting for IP Address\n");
   delay(1000);
-  Serial.printf("Scan Argon for Saved Credentials \n");
+  Serial.printf("Scan Argon for WiFi Information \n");
   Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
   WiFi.macAddress(mac);
   Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
@@ -67,15 +72,15 @@ void setup() {
 }
 
 void loop() {
-  delay(10000);
-  Serial.printf("Scan Argon for Saved Credentials \n");
-  Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
-  WiFi.macAddress(mac);
-  Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
-  if(!Particle.connected()) {
-    Serial.printf("Trying to connect");
-      Particle.connect();
-      delay(5000);
-  }
+  // delay(10000);
+  // Serial.printf("Scan Argon for Saved Credentials \n");
+  // Serial.printf("ip address: %s \n", WiFi.localIP().toString().c_str());
+  // WiFi.macAddress(mac);
+  // Serial.printf("mac: %02X:%02X:%02X:%02X:%02X:%02X \n", mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  // if(!Particle.connected()) {
+  //   Serial.printf("Trying to connect");
+  //     Particle.connect();
+  //     delay(5000);
+  // }
 
 }
